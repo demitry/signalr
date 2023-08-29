@@ -323,6 +323,39 @@ Summary
 - Polling with timeout 2 min.
 
 ### SignalR Connections [18]
+
+```cs
+            // Multiple options to send message
+
+            // Send to All
+            await Clients.All.SendAsync("ReceiveMessage", user, messages);
+
+            // Send back to the Caller only
+            await Clients.Caller.SendAsync("ReceiveMessage", user, messages);
+
+            // Send to Others, all except Caller
+            await Clients.Others.SendAsync("ReceiveMessage", user, messages);
+
+            // All connections are identified using Connection Id
+            // Send message only to Client 'A'
+            await Clients.Client("Connection-Id-A").SendAsync("ReceiveMessage", user, messages);
+
+            // Send only to clients 'A' and 'C' (use multiple connection Ids)
+            await Clients.Clients("Connection-Id-A", "Connection-Id-C").SendAsync("ReceiveMessage", user, messages);
+
+            // Send to all users except 'A' and 'C'
+            await Clients.AllExcept("Connection-Id-A", "Connection-Id-C").SendAsync("ReceiveMessage", user, messages);
+
+            // When we work with ASP NET Identity, we can identify user, 
+            // We can uniquely identify all the connections based on user Id
+            // Will cover it in the next topics
+            await Clients.Users("ben@gmail.com", "mark@gmail.com").SendAsync("ReceiveMessage", user, messages);
+
+            // Based on the user roles, we have groups, in SignalR we can group all the users
+            // and sent the notification to the particular group
+            // Will cover it in the next topics
+```
+
 ## Section 3: SignalR - More Projects
 ### Send vs Invoke [19]
 ### Transport Type and Logging in SingalR [20]
