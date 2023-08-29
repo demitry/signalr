@@ -195,6 +195,7 @@ Connect to a Hub from client side
 
 ```js
 // create connection
+//"/hubs/userCount" - route provided in Program.cs
 var connectionUserCount = new signalR.HubConnectionBuilder().withUrl("/hubs/userCount").build();
 
 // connect to methods that hub invokes aka receive notifications from hub
@@ -205,7 +206,7 @@ connectionUserCount.on("updateTotalViews", (value) => {
 
 // invoke hub methods aka send notification to hub
 function newWindowLoadedOnClient() {
-    connectionUserCount.send("NewWindowLoaded");
+    connectionUserCount.send("NewWindowLoaded"); // Invoke Hub method
 }
 
 //start connection
@@ -226,6 +227,16 @@ connectionUserCount.start().then(fulfilled, rejected);
 ```
 
 ### SignalR In Action [14]
+
+Chrome log
+```
+[2023-08-29T11:01:24.616Z] Information: Normalizing '/hubs/userCount' to 'https://localhost:7008/hubs/userCount'.
+Utils.ts:191 [2023-08-29T11:01:24.748Z] Information: WebSocket connected to wss://localhost:7008/hubs/userCount?id=ukRDMeb1setZhvZtuzWe2g.
+usersCount.js:21 Connection to User Hub Successful
+```
+
+Wow, it is updates on each instance of Chrome
+
 ### SignalR Hub Methods [15]
 ### SignalR Flow Overview [16]
 ### Transport Types [17]
