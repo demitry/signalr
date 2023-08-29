@@ -161,6 +161,15 @@ app.MapHub<UserHub>("/hubs/userCount");
 ```
 
 ### Add Client Side Library for SignalR [11]
+
+1. Solution -> Add -> Client Side Library
+  - Provider: unpkg
+  - Library: @microsoft/signalr@latest
+  - Target location: wwwroot/lib/microsoft/signalr/
+2. Install
+
+
+
 ### Modify Home View [12]
 ### Configure SignalR Client Js [13]
 ### SignalR In Action [14]

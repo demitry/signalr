@@ -2,6 +2,7 @@
 
 namespace SignalRSample.Hubs
 {
+    //Server side
     public class UserHub : Hub
     {
         public static int TotalViews { get; set; } = 0;
