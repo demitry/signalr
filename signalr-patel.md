@@ -83,13 +83,28 @@
 
 ## Section 1: Introduction
 ### Welcome [1]
+
+- Product is not available?
+- Chat App
+- SignalR - Open Source, open protocol
+- Part of .NET framework
+- Fast, scalable, Azure
+- Real-time Web without refreshing the browser
+- 2 parts: Client Side and Server side (hub)
+
 ### Demo [2]
 ### Topics Covered [3]
 ### Project Resources [4]
 ### Typical HTTP Scenario [5]
 ### Hubs in SignalR [6]
 ### Typical Flow [7]
+
 ### Create Project [8]
+
+- Asp.NET Core MVC
+- Authentication type: Individual Account
+- => Integration EF Core with the user identity
+
 ## Section 2: SignalR in Action
 ### Create Hub [9]
 ### Create Hub Method [10]
