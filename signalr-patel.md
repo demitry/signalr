@@ -99,6 +99,14 @@
 ### Hubs in SignalR [6]
 ### Typical Flow [7]
 
+1. Create SignalR hub
+2. Add methods for Hub
+3. Add Client side SignalR
+4. Connect to SignalR Hub from Client JS
+5. Call SignalR Hub method
+6. SignalR invokes methid in client JS to notify clients
+7. Clients receives update from SignalR hub and perform action
+
 ### Create Project [8]
 
 - Asp.NET Core MVC
