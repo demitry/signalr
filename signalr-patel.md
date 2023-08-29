@@ -280,6 +280,48 @@ connectionUserCount.on("updateTotalUsers", (value) => {
 SignalR Basic Flow.pdf
 
 ### Transport Types [17]
+
+SignalR works at a top of these protocols:
+- Web Sockets
+- SSE (Server Sent Events)
+- Long Polling
+
+Traditional HTTP
+- Server cannot send response without the request from client side
+- It take some time to send a response after a request
+- After the response is sent from the server, that connection is dropped. It is no longer active, so that connection cannot be used again to send any more data.
+- That is the critical piece when it comes to HTTP.
+- Only client can initiate a request.
+- Server cannot initiate a response without a request.
+
+To solve the issue with a response without any existing connection, we have different protocols:
+- **Web Sockets**
+  - the connection is not a one big connection. two way connection and it stays open.
+  - But what if web sockets is not supported?
+- **SSE (Server Sent Events)**
+  - client will have a request (traditional HTTP request) to the server and then server will not  response back.
+  - It will try to create an event pipeline using that communication channel that server creates.
+  - It is only one way. It is not bi directional like we saw in web sockets.
+  - Client cannot use the event channel.
+  - Client can use just traditional HTTP request
+
+In worst case scenario, in some situation where web sockets and event is also not supported:
+
+- **Long Polling**
+  - Request
+  - The connection does not close. 
+  - It always waits for a response from the server
+  - Timeout, which is about 2 minutes.
+  - So in 2 minutes, if server does not have any response -   connection will be closed with timeout.
+  - Client could initiate a new request.
+  - So client can have a channel which is always open
+
+Summary
+
+- Web Sockets - best, fastest, 2-way channel, always open
+- SSE (Server Sent Events) - 1-way, Client cannot use the event channel. Client uses traditional HTTP request.
+- Polling with timeout 2 min.
+
 ### SignalR Connections [18]
 ## Section 3: SignalR - More Projects
 ### Send vs Invoke [19]
