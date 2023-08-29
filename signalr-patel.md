@@ -238,6 +238,45 @@ usersCount.js:21 Connection to User Hub Successful
 Wow, it is updates on each instance of Chrome
 
 ### SignalR Hub Methods [15]
+
+Total number of connected windows?
+
+```cs
+    //Server side
+    public class UserHub : Hub
+    {
+        public static int TotalViews { get; set; } = 0;
+        
+        public static int TotalUsers { get; set; } = 0;
+
+        public override Task OnConnectedAsync()
+        {
+            TotalUsers++;
+            Clients.All.SendAsync("updateTotalUsers", TotalUsers).GetAwaiter().GetResult();
+
+            return base.OnConnectedAsync();
+        }
+
+        public override Task OnDisconnectedAsync(Exception? exception)
+        {
+            TotalUsers--;
+            Clients.All.SendAsync("updateTotalUsers", TotalUsers).GetAwaiter().GetResult();
+
+            return base.OnDisconnectedAsync(exception);
+        }
+```
+
+On the client side all the same:
+
+```js
+connectionUserCount.on("updateTotalUsers", (value) => {
+    var newCountSpan = document.getElementById("totalUsersCounter");
+    newCountSpan.innerText = value.toString();
+})
+```
+
+
+
 ### SignalR Flow Overview [16]
 ### Transport Types [17]
 ### SignalR Connections [18]
