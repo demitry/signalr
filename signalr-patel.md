@@ -103,10 +103,35 @@
 
 - Asp.NET Core MVC
 - Authentication type: Individual Account
-- => Integration EF Core with the user identity
+- => Integration .NET/EFCore with the user identity
 
 ## Section 2: SignalR in Action
+
 ### Create Hub [9]
+
+Hub - sends and receives messages to/from clients
+
+Hubs folder
+
+```cs
+using Microsoft.AspNetCore.SignalR;
+
+namespace SignalRSample.Hubs
+{
+    public class UserHub : Hub
+    {
+    }
+}
+```
+
+Program.cs
+
+```cs
+builder.Services.AddSignalR();
+...
+app.MapHub<UserHub>("/hubs/userCount");
+```
+
 ### Create Hub Method [10]
 ### Add Client Side Library for SignalR [11]
 ### Modify Home View [12]
