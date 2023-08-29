@@ -167,8 +167,7 @@ app.MapHub<UserHub>("/hubs/userCount");
   - Library: @microsoft/signalr@latest
   - Target location: wwwroot/lib/microsoft/signalr/
 2. Install
-
-
+3. Move signalr.js to js folder
 
 ### Modify Home View [12]
 ### Configure SignalR Client Js [13]
