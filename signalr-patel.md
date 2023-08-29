@@ -275,9 +275,10 @@ connectionUserCount.on("updateTotalUsers", (value) => {
 })
 ```
 
-
-
 ### SignalR Flow Overview [16]
+
+SignalR Basic Flow.pdf
+
 ### Transport Types [17]
 ### SignalR Connections [18]
 ## Section 3: SignalR - More Projects
