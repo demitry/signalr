@@ -170,6 +170,21 @@ app.MapHub<UserHub>("/hubs/userCount");
 3. Move signalr.js to js folder
 
 ### Modify Home View [12]
+
+```html
+@* Client Side *@
+<div class="container">
+    <div class="row">
+        <div class="col-3">Total Views: </div>
+        <div class="col-4">
+            <span id="totalViewsCounter"></span>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/signalr.js"></script>
+```
+
 ### Configure SignalR Client Js [13]
 ### SignalR In Action [14]
 ### SignalR Hub Methods [15]
