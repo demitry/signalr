@@ -186,6 +186,45 @@ app.MapHub<UserHub>("/hubs/userCount");
 ```
 
 ### Configure SignalR Client Js [13]
+
+Connect to a Hub from client side
+- create connection
+- connect to methods that hub invokes aka receive notifications from hub
+- invoke hub methods aka send notification to hub
+- start connection
+
+```js
+// create connection
+var connectionUserCount = new signalR.HubConnectionBuilder().withUrl("/hubs/userCount").build();
+
+// connect to methods that hub invokes aka receive notifications from hub
+connectionUserCount.on("updateTotalViews", (value) => {
+    var newCountSpan = document.getElementById("totalViewsCounter");
+    newCountSpan.innerText = value.toString();
+});
+
+// invoke hub methods aka send notification to hub
+function newWindowLoadedOnClient() {
+    connectionUserCount.send("NewWindowLoaded");
+}
+
+//start connection
+function fulfilled() {
+    //do something on start
+    console.log("Connection to User Hub Successful");
+}
+function rejected() {
+    //rejected logs
+    console.log("Connection to User Hub rejected");
+}
+
+connectionUserCount.start().then(fulfilled, rejected);
+
+//fulfilled - connection estableshed successfully
+//rejected - what should happened when it fails
+
+```
+
 ### SignalR In Action [14]
 ### SignalR Hub Methods [15]
 ### SignalR Flow Overview [16]
